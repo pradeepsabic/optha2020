@@ -1,0 +1,35 @@
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.env
+*.venv
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Log files
+logs/
+*.log
+
+# MacOS system files
+.DS_Store
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore large media files (if needed)
+*.mp4
+*.avi
+*.mov
+
+# Ignore model checkpoints or weights (if applicable)
+checkpoints/
+*.h5
+*.ckpt
+*.pth
+*.pt

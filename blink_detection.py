@@ -2,6 +2,7 @@ import cv2
 import dlib
 import numpy as np
 import pyttsx3
+import time
 from scipy.spatial import distance as dist
 
 # Initialize text-to-speech engine
@@ -33,6 +34,10 @@ cap = cv2.VideoCapture(0)
 frame_count = 0
 blink_count = 0
 alert_triggered = False
+
+# 20-20-20 Rule Timer
+start_time = time.time()  # Start time for tracking 20 minutes
+TWENTY_MINUTES = 20 * 60  # 20 minutes in seconds
 
 while True:
     ret, frame = cap.read()
@@ -73,8 +78,16 @@ while True:
         engine.runAndWait()
         alert_triggered = True  # Avoid multiple alerts
 
+    # 20-20-20 Rule Alert
+    elapsed_time = time.time() - start_time  # Check elapsed time
+    if elapsed_time > TWENTY_MINUTES:
+        engine.say("Take a break! Follow the 20-20-20 rule. Look 20 feet away for 20 seconds.")
+        engine.runAndWait()
+        print("🔔 20-20-20 Rule Reminder: Look 20 feet away for 20 seconds! 🔔")
+        start_time = time.time()  # Reset the timer
+
     # Display the frame
-    cv2.imshow("Eye Blink Detection", frame)
+    cv2.imshow("Eye Blink Detection with 20-20-20 Rule", frame)
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
